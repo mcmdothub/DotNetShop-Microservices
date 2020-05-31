@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Thank you for your order!";
+}
+
+<div class="alert alert-success mt-5" role="alert">
+    <div class="row">
+        <div class="col-auto">
+            <i class="far fa-check-circle" style="font-size: 4em"></i>
+        </div>
+        <div class="col">
+            <h4 class="alert-heading">Thank you @ViewBag.CustomerName for your order!</h4>
+            <p class="mb-0">We have sent a confirmation e-mail to <b>@ViewBag.CustomerEmail</b> with your orderdetails.</p>
+        </div>
+    </div>
+</div>
+
+<div class="form-control">
+    <strong>Order Id:</strong> <small>@ViewBag.OrderId</small>
+</div>

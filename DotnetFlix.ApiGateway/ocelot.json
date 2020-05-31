@@ -1,0 +1,34 @@
+{
+  "ReRoutes": [
+    {
+      "DownstreamPathTemplate": "/api/products/{catchAll}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44304
+        }
+      ],
+      "UpstreamPathTemplate": "/products-api/{catchAll}",
+      "UpstreamHttpMethod": [ "Get", "Put", "Post", "Delete" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/orders/{catchAll}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44380
+        }
+      ],
+      "UpstreamPathTemplate": "/orders-api/{catchAll}",
+      "UpstreamHttpMethod": [ "Get", "Put", "Delete" ]
+    }
+
+  ],
+  "ReRouteIsCaseSensitive": false,
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:44394"
+  }
+}

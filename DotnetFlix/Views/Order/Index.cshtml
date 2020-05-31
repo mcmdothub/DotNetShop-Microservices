@@ -1,0 +1,90 @@
+﻿@model Payment
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<h2 class="mt-5">Review Order</h2>
+<hr />
+
+<div class="container">
+
+    @if (!ViewBag.HasItemsInCart)
+    {
+        <div class="alert alert-warning" role="alert">
+            Your cart is empty!
+        </div>
+    }
+    else
+    {
+
+        @if (!ViewBag.HasCompleteAddress)
+        {
+            <div class="alert alert-warning" role="alert">
+                <i class="fas fa-info-circle" style="font-size: 1.5rem; vertical-align: middle"></i>
+                <span style="vertical-align: middle">Please provide a <a asp-area="Identity" asp-page="/Account/Manage/Index" class="alert-link">valid shippingaddress</a> in order to complete your purchase.</span>
+            </div>
+        }
+
+        <div class="row" id="user-order-visible">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+
+                <div class="card bg-light mb-3">
+                    <div class="card-header">Address Information</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Recipient</h5>
+                        <hr />
+                        <div class="card-text">
+
+                            @if (!ViewBag.HasCompleteAddress)
+                            {
+                                <span>No shippingaddress!</span>
+                                @*<a asp-area="Identity" asp-page="/Account/Manage/Index">Add an address.</a>*@
+                                <a asp-area="" asp-controller="Manage" asp-action="Index">Add an address.</a>
+                            }
+                            else
+                            {
+                                <address>
+                                    <div>@ViewBag.User.FirstName @ViewBag.User.LastName</div>
+                                    <div>@ViewBag.User.Address</div>
+                                    <div>@ViewBag.User.Zip, @ViewBag.User.City</div>
+
+                                    <div class="mt-2"><i class="fas fa-phone"></i> @ViewBag.User.PhoneNumber</div>
+                                    <div><i class="fas fa-envelope"></i> @ViewBag.User.Email</div>
+                                </address>
+                            }
+                        </div>
+                        <hr />
+
+                        @if (ViewBag.HasCompleteAddress)
+                        {
+                            <div class="float-right">Wrong address? <a asp-area="Identity" asp-page="/Account/Manage/Index">Update it here</a></div>
+                        }
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-8">
+
+                @* Cart content will be filled by javascript *@
+                <div class="cart-content"></div>
+
+                <hr />
+
+                @if (ViewBag.HasCompleteAddress)
+                {
+                    <div class="d-flex align-items-end flex-column">
+                        <h5 class="mr-0 p-0 dis">Total: <span class="total-items-cost"></span></h5>
+                        <button class="btn btn-warning mr-0 text-white" data-toggle="modal" data-target="#paymentModal" onclick="$('#paymentModal').modal('show')">CONTINUE <i class="fas fa-chevron-right"></i></button>
+                    </div>
+                }
+            </div>
+
+        </div>
+
+        <!--  Payments Partial View -->
+        <partial name="_PaymentPartial" model="@Model" />
+    }
+
+</div>

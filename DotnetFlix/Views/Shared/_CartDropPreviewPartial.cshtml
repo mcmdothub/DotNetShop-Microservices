@@ -1,0 +1,26 @@
+﻿<div class="rounded shadow bg-white border p-2 mx-auto" id="dropdown-cart">
+
+    <div class="d-flex justify-content-end">
+        <button type="button" class="close m-0 p-0" aria-label="Close" id="cart-close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <hr />
+    <div class="cart-content"></div>
+    <hr />
+
+
+    <div class="position-relative" style="height: 40px">
+        <h5 class="card-title m-0 p-0 vertical-center font-weight-normal text-dark"><b>Total:</b> <span class="total-items-cost"></span></h5>
+
+        @if (User.Identity.IsAuthenticated)
+        {
+            <a asp-action="Index" asp-controller="Order" class="btn btn-warning vertical-center text-white" style="right: 0; font-size: 0.8em; display: none" id="checkout-button"><span class="font-weight-bold">CHECKOUT</span> <i class="fas fa-chevron-right"></i></a>
+        }
+        else
+        {
+            <button class="btn btn-warning vertical-center text-white" data-toggle="modal" style="right: 0; font-size: 0.8em; display: none" id="checkout-button" onclick="$('#dimmer').fadeOut(200, function () { $('#staticBackdrop').modal('show'); });"><span class="font-weight-bold">CHECKOUT</span> <i class="fas fa-chevron-right"></i></button>
+        }
+    </div>
+</div>

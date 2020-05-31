@@ -1,0 +1,59 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model DotnetFlix.Database.Models.ViewModels.ProductPaginationViewModel
+@{
+    ViewData["Title"] = "Products";
+}
+
+@* Product-to-cart popup modal message *@
+<partial name="_CartMessagePartial" />
+
+<h2 class="mt-5 font-weight-light">
+    Products
+    @if (!string.IsNullOrWhiteSpace(ViewBag.SearchString))
+    {
+        <span style="font-size: 1rem"> - Searchresult: @((Model != null) ? Model.PaginationData.TotalProducts : 0)</span>
+    }
+</h2>
+<hr />
+
+@* Products below *@
+<div class="row flex-row">
+
+    @if (Model != null && @Model.PaginationData.TotalProducts > 0)
+    {
+        @foreach (var product in Model.Products)
+        {
+            <partial name="_ProductPartial" model="product" />
+        }
+    }
+    else
+    {
+        <div>
+            @if (!string.IsNullOrWhiteSpace(ViewBag.SearchString))
+            {
+                <p>
+                    Your search "<span class="font-weight-bold">@ViewBag.SearchString</span>" yielded no result.
+                </p>
+                <a asp-action="Index" asp-controller="Products" class="btn btn-info text-white font-weight-bold text-uppercase" style="font-size: 0.8rem"><i class="fas fa-angle-left"></i> All products</a>
+
+            }
+            else
+            {
+                throw new Exception("User tried to view a page outside pagination range");
+            }
+        </div>
+    }
+
+</div>
+
+@if (Model != null && Model.Products.Count() > 0)
+{
+    @* Pagination links below *@
+    <div class="col-12 d-flex justify-content-center mt-5">
+        <nav aria-label="...">
+            <partial name="_PaginationLinksPartial" model="Model.PaginationData" />
+        </nav>
+    </div>
+}

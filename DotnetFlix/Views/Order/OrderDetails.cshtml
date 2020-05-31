@@ -1,0 +1,35 @@
+﻿@model Order
+@{
+    ViewData["Title"] = "Order details";
+}
+
+<h3 class="mt-5">Order Details</h3>
+<p>OrderId: <small>@Model.Id</small></p>
+<p>Status: @Model.Status.Name</p>
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Product</th>
+                <th>Your Price</th>
+            </tr>
+        </thead>
+        @foreach (var item in Model.OrderItems)
+        {
+            <tr>
+                <td style="min-width: 80px"><img src="@item.Photo" alt="@item.Name" style="object-fit: cover; height: 50px; width: 60px; overflow: hidden" /></td>
+                <td>
+                    <a asp-action="Details" asp-controller="Products" asp-route-id="@item.ProductId">@item.Name</a>
+                    <p><small>@item.ProductId</small></p>
+                </td>
+                <td class="align-middle">@item.Quantity &times; @item.UnitPrice.ToString("C2")</td>
+            </tr>
+        }
+    </table>
+
+    <div class="text-right">
+        <h5 class="mr-0 p-0 dis">Total: @Model.OrderTotal.ToString("C2")</h5>
+    </div>
+</div>

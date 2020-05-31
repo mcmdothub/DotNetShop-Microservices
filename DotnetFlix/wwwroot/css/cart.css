@@ -1,0 +1,82 @@
+﻿/* Menu
+-------------------------------------------------- */
+.menu-content-right .fa-search,
+.menu-content-right #cart-link {
+    color: #fff;
+    color: #a2d5f2;
+}
+
+.menu-content-right .fa-search:hover,
+.menu-content-right #cart-link:hover {
+    cursor: pointer;
+    color: #a2d5f2;
+}
+
+#dropdown-cart {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 36px;
+    width: 297px;
+    z-index: 3;
+}
+
+.cart-zindex {
+    min-width: 45px;
+    z-index: 3;
+}
+
+/* change background when hovering over a cart-item */
+.cart-row {
+    background-color: transparent;
+}
+
+.cart-row:hover {
+    background-color: #eee;
+}
+
+/* styling for cart image-thumbnail */
+.cart-image div:first-child {
+    width: 60px;
+    height: 50px;
+    overflow: hidden;
+}
+
+.cart-image img {
+    object-fit: cover;
+    height: inherit; /* inherit height from .cart-image */
+    width: inherit /* inherit width from .cart-image */
+}
+
+/* styling for decrease, increase and delete cart-buttons */
+.cart-action {
+    user-select: none;
+    color: #ccc;
+}
+
+.cart-action:hover {
+    cursor: pointer;
+    color: #666;
+}
+
+/* Dimmer */
+#dimmer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    display: none;
+    overflow: hidden !important;
+}
+
+/* Cart item counter - menu */
+#cart-item-count {
+    background-color: transparent !important;
+}
+
+#cart-open {
+    text-decoration: none;
+}

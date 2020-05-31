@@ -1,0 +1,70 @@
+﻿@model Payment
+@using System.Globalization
+@{
+    var monthId = 1;
+}
+
+<div class="modal fade" id="paymentModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Payment Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <form name="paymentForm" id="paymentForm">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label asp-for="@Model.OwnerName">Owner</label> <span asp-validation-for="@Model.OwnerName" class="text-danger" id="OwnerName-error"></span>
+                        <input type="text" asp-for="@Model.OwnerName" class="form-control" placeholder="Owner name" required pattern="\p{L}{2,}([-]?\p{L}{2,})\s\p{L}{2,}([-\s]?\p{L}{2,}){0,3}" />
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-9">
+                            <label sp-for="@Model.CardNumber">Card Number</label> <span asp-validation-for="@Model.CardNumber" class="text-danger" id="CardNumber-error"></span>
+                            <input type="text" asp-for="@Model.CardNumber" maxlength="19" class="form-control" placeholder="xxxx xxxx xxxx xxxx" required pattern="(?:\d{4}\s){3}\d\d\d\d" />
+                        </div>
+                        <div class="form-group col-3">
+                            <label asp-for="@Model.CVV">CVV</label> <span asp-validation-for="@Model.CVV" class="text-danger" id="CVV-error"></span>
+                            <input type="password" asp-for="@Model.CVV" maxlength="3" class="form-control" id="CVV" placeholder="CVV" required pattern="\d{3}" />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-4">
+                            <label asp-for="@Model.Month">Month</label> <span asp-validation-for="@Model.Month" class="text-danger"></span>
+                            <select class="form-control" asp-for="@Model.Month" required>
+                                <option selected disabled value="">select</option>
+                                @foreach (var month in DateTimeFormatInfo.CurrentInfo.MonthNames)
+                                {
+                                    @if (!string.IsNullOrEmpty(month))
+                                    {
+                                        <option value="@(monthId++)">@month</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group col-4">
+                            <label asp-for="@Model.Year">Year</label> <span asp-validation-for="@Model.Year" class="text-danger"></span>
+                            <select class="form-control" asp-for="@Model.Year" required>
+                                <option selected disabled value="">select</option>
+                                @for (var i = DateTime.Now.Year; i <= DateTime.Now.Year + 5; i++)
+                                {
+                                    <option>@i</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group col-4 position-relative">
+                            <img src="~/image/cards.jpg" alt="Credit cards" class="img-fluid position-absolute pb-1" style="max-width: 100%; height: auto; bottom: 0" />
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success font-weight-bold text-white">CONFIRM ORDER</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

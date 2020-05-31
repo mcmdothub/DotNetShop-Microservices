@@ -1,0 +1,37 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<div class="navbar-nav float-right">
+
+    <ul class="list-inline">
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <li class="list-inline-item">
+                <div class="dropdown">
+                    <button type="button" class="nav-link btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user"></i> @User.Identity.Name
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right user-dropdown">
+                        <a class="dropdown-item" asp-action="OrderHistory" asp-controller="Order"><i class="fas fa-list"></i> Orders</a>
+                        <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"><i class="fas fa-user-cog"></i> Profile</a>
+                        <div class="dropdown-divider"></div>
+                        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                            <button type="submit" class="dropdown-item btn btn-link"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                        </form>
+                    </div>
+                </div>
+            </li>
+        }
+        else
+        {
+            <li class="list-inline-item">
+                <a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Register</a>
+            </li>
+            <li class="list-inline-item">
+                <a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Login</a>
+            </li>
+        }
+    </ul>
+
+</div>

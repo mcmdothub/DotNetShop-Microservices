@@ -1,0 +1,23 @@
+﻿.card-product {
+    flex-basis: 300px;
+    transition: all ease-in-out .2s;
+}
+
+.card-product:hover {
+    box-shadow: 4px rgba(0,0,0, 0.5);
+    transform: scale(1.1);
+}
+
+/* override and add additional css to bootstrap card-image-top */
+.card-product .card-img-top {
+    text-align: center;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.card-product .card-img-top img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}

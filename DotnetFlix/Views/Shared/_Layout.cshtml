@@ -1,0 +1,169 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManage
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - DotnetFlix</title>
+    @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
+    <link rel="stylesheet" href="~/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/coach-theme.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/cart.css" />
+    <link rel="stylesheet" href="~/css/products.css" />
+</head>
+<body>
+    <div id="dimmer"></div>
+    <!--  HEADER  -->
+    <header>
+
+        <!--  LOGIN MENU PARTIAL  -->
+        <div class="container navbar-dark d-none d-lg-block header-top">
+            <div class="row">
+                <div class="col-auto m-0 p-0 ">
+                    <div class="nav-link text-info">
+                        <i class="fas fa-headset"></i>
+                        <span class="font-weight-bold">Hire Me:</span> 123-456-789
+                    </div>
+                </div>
+                <div class="col">
+                    <partial name="_LoginMenuPartial" />
+                </div>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container  position-relative">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">DotnetFlix</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Products" asp-action="Index">Products</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+
+                        <!--  USER LOGIN PARTIAL VIEW  -->
+                        <partial name="_LoginPartial" />
+
+                    </ul>
+                </div>
+
+                <!--  CART  -->
+                <div class="position-absolute menu-content-right">
+                    <div class="d-flex d-inline p-0 m-0 ml-auto position-relative">
+
+                        <form asp-controller="Products" asp-action="Index" method="get" class="form-inline" name="search">
+                            <input class="form-control p-0 m-0" autofocus type="search" name="search" placeholder="search..." aria-label="Search">
+                        </form>
+
+                        <div class="form-inline">
+                            <a class="pl-2 pr-2 search-divider" onclick="document.forms['search'].submit();"><i class="fas fa-search"></i></a>
+                        </div>
+
+                        <div class="form-inline pl-1 pr-0 mr-sm-2 cart-zindex" id="cart-container">
+                            <a id="cart-open">
+                                <span id="cart-link"><i class="fas fa-cart-arrow-down pl-2"></i><span class="badge m-0 pl-1 pr-0" id="cart-item-count"></span></span>
+                            </a>
+
+                            <partial name="_CartDropPreviewPartial" />
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </nav>
+    </header>
+
+    @if (!User.Identity.IsAuthenticated)
+    {
+        <partial name="_LoginPromptModalPartial" />
+    }
+
+    <main role="main">
+        <!--  MAIN CONTAINER  -->
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+
+    </main>
+
+    <!--  FOOTER  -->
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="mb-8">
+                        <ul class="list-inline">
+                            <li class="list-inline-item"><a class="text-reset" href="/">&copy; 2020 - DotnetFlix</li>
+                            <li class="list-inline-item"><a class="text-reset" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4 col-md-8 col-12">
+                    <div class="mb-4">
+                        <h4 class="mb-4 mb-4 text-black">New Links</h4>
+                        <ul class="list-unstyled list-group">
+                            <li class="list-group-item"><a class="list-group-item-link" href="#">Test Link 1</a></li>
+                            <li class="list-group-item"><a class="list-group-item-link" href="#">Test Link 2</a></li>
+                            <li class="list-group-item"><a class="list-group-item-link" href="#">Test Link 3</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4 col-md-8 col-12">
+                    <div class="mb-4">
+                        <h4 class="mb-4 mb-4 text-black">Second Links</h4>
+                        <ul class="list-unstyled list-group">
+                            <li class="list-group-item"><a class="list-group-item-link" href="#">Test Link 1</a></li>
+                            <li class="list-group-item"><a class="list-group-item-link" href="#">Test Link 2</a></li>
+                            <li class="list-group-item"><a class="list-group-item-link" href="#">Test Link 3</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <!--  SOCIAL LINKS  -->
+                <div class="col-lg-4 col-md-8 col-12">
+                    <div class="mb-4">
+                        <h4 class="mb-4 mb-4 text-black">Follow Me</h4>
+                        <ul class="list-unstyled list-group">
+                            <li class="list-group-item"><a class="list-group-item-link" href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li class="list-group-item"><a class="list-group-item-link" href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li class="list-group-item"><a class="list-group-item-link" href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <!--  EXTRA SCRIPTS  -->
+    <script src="https://kit.fontawesome.com/a59e8a19b5.js" crossorigin="anonymous"></script>
+    <script src="~/js/order.js" asp-append-version="true"></script>
+    <script src="~/js/cart.js" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

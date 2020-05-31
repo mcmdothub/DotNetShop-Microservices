@@ -1,0 +1,55 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model DotnetFlix.Database.Models.ViewModels.PaginationData
+@*@using Microsoft.AspNetCore.Http;*@
+
+<ul class="pagination">
+
+    @if (Model.CurrentPage > 1)
+    {
+        <li class="page-item">
+            <a class="page-link" asp-action="Index" asp-route-page="@(Model.CurrentPage - 1)" asp-route-search="@Context.Request.Query["search"]"><i class="fas fa-caret-left"></i></a>
+        </li>
+    }
+    else
+    {
+        <li class="page-item disabled">
+            <span class="page-link disabled"><i class="fas fa-caret-left"></i></span>
+        </li>
+    }
+
+    @for (var i = Model.PaginationStart; i <= Model.PaginationLimit; i++)
+    {
+
+        @if (i == Model.CurrentPage)
+        {
+            <li class="page-item active" aria-current="page">
+                <span class="page-link">
+                    @i
+                    <span class="sr-only">(current)</span>
+                </span>
+            </li>
+        }
+        else
+        {
+            <li class="page-item"><a class="page-link" asp-action="Index" asp-route-page="@i" asp-route-search="@Context.Request.Query["search"]">@i</a></li>
+        }
+    }
+
+    @if (Model.CurrentPage < Model.TotalPages)
+    {
+        <li class="page-item">
+            <a class="page-link" asp-action="Index" asp-route-page="@(Model.CurrentPage + 1)" asp-route-search="@Context.Request.Query["search"]"><i class="fas fa-caret-right"></i></a>
+        </li>
+    }
+    else
+    {
+        <li class="page-item disabled">
+            <span class="page-link disabled"><i class="fas fa-caret-right"></i></span>
+        </li>
+    }
+</ul>
