@@ -7,16 +7,22 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetFlix", "DotnetFlix\Do
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetFlix.Database", "DotnetFlix.Database\DotnetFlix.Database.csproj", "{6E5966AB-4172-49EA-9990-A53AD3BD4252}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotnetFlix.ApiGateway", "DotnetFlix.ApiGateway\DotnetFlix.ApiGateway.csproj", "{2039B2EE-6782-43C8-B6C0-DF9431CEE752}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetFlix.ApiGateway", "DotnetFlix.ApiGateway\DotnetFlix.ApiGateway.csproj", "{2039B2EE-6782-43C8-B6C0-DF9431CEE752}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotnetFlix.ProductService", "DotnetFlix.ProductService\DotnetFlix.ProductService.csproj", "{BC4F98C1-FB6D-42BC-B1BE-CAFB4C926589}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetFlix.ProductService", "DotnetFlix.ProductService\DotnetFlix.ProductService.csproj", "{BC4F98C1-FB6D-42BC-B1BE-CAFB4C926589}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotnetFlix.OrderService", "DotnetFlix.OrderService\DotnetFlix.OrderService.csproj", "{7E79919F-D22A-4485-A17F-C4A952044D16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetFlix.OrderService", "DotnetFlix.OrderService\DotnetFlix.OrderService.csproj", "{7E79919F-D22A-4485-A17F-C4A952044D16}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A7563B63-58E4-4D0F-A342-72E971D131E3}"
 	ProjectSection(SolutionItems) = preProject
 		readme.md = readme.md
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{DA3524A6-7C63-4DAE-8250-B79FCABF5432}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotnetFlix.OrderService.Tests", "OrdersService.Tests\DotnetFlix.OrderService.Tests.csproj", "{3E84348C-5AB6-412D-849F-6E923C3885D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotnetFlix.ProductService.Tests", "ProductsService.Tests\DotnetFlix.ProductService.Tests.csproj", "{0E455157-BB64-4DCF-8B6E-FE73524F5432}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,9 +50,21 @@ Global
 		{7E79919F-D22A-4485-A17F-C4A952044D16}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E79919F-D22A-4485-A17F-C4A952044D16}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E79919F-D22A-4485-A17F-C4A952044D16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E84348C-5AB6-412D-849F-6E923C3885D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E84348C-5AB6-412D-849F-6E923C3885D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E84348C-5AB6-412D-849F-6E923C3885D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E84348C-5AB6-412D-849F-6E923C3885D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E455157-BB64-4DCF-8B6E-FE73524F5432}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E455157-BB64-4DCF-8B6E-FE73524F5432}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E455157-BB64-4DCF-8B6E-FE73524F5432}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E455157-BB64-4DCF-8B6E-FE73524F5432}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3E84348C-5AB6-412D-849F-6E923C3885D5} = {DA3524A6-7C63-4DAE-8250-B79FCABF5432}
+		{0E455157-BB64-4DCF-8B6E-FE73524F5432} = {DA3524A6-7C63-4DAE-8250-B79FCABF5432}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2510E7EF-00E4-41D3-B3D6-2584595290D6}
